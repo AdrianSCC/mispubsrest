@@ -75,6 +75,11 @@ public class RESTController {
         }
     }
 
+    /**
+     * Metodo para borrar un pub
+     * @param id
+     * @return
+     */
     @RequestMapping(value = "pubs/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Pub> borrar(@PathVariable("id") Integer id) {
         //Buscamos por id
