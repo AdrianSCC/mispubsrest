@@ -6,12 +6,10 @@ import com.example.mispubsrest.Modelos.Pub;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/")
@@ -51,4 +49,28 @@ public class RESTController {
         return ResponseEntity.ok(lista);
     }
 
+    /**
+     * Metodo para modificar un pub
+     * @param id
+     * @param pub
+     * @return
+     */
+    @RequestMapping(value = "pubs", method = RequestMethod.PUT)
+    public ResponseEntity<Pub> update(@PathVariable("id") Integer id, @RequestBody Pub pub){
+        Optional<Pub> optionalPub = daoPub.findById(id);
+        if (optionalPub.isPresent()){
+            Pub p = optionalPub.get();
+            p.setNombre(pub.getNombre());
+            p.setLatitud(pub.getLatitud());
+            p.setLongitud(pub.getLongitud());
+            p.setEstilo(pub.getEstilo());
+            p.setVisitas(pub.getVisitas());
+            p.setWeb(pub.getWeb());
+            daoPub.save(p);
+            return ResponseEntity.ok(p);
+        }
+        else{
+            return ResponseEntity.noContent().build();
+        }
+    }
 }
