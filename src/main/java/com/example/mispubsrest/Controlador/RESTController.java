@@ -16,7 +16,8 @@ public class RESTController {
 
     @RequestMapping(value = "hola", method = RequestMethod.GET)
     public String hola(){
-        return "Hola todo ok";
+        return "Hola, todo ok";
+
     }
 
 }
