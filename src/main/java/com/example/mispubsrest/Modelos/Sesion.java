@@ -7,30 +7,30 @@ import javax.persistence.*;
 public class Sesion {
 
     @Id
-    @Column(name="idUsuario")
-    private Integer idUsuario;
+    @Column(name="id_usuario")
+    private Integer id_usuario;
 
     @Column(name="token", nullable = false)
     private String token;
 
-    @Column(name="fechaInicio", nullable = false)
-    private String fechaInicio;
+    @Column(name="fecha_inicio", nullable = false)
+    private String fecha_inicio;
 
-    @Column(name="fechaFin", nullable = false)
-    private String fechaFin;
+    @Column(name="fecha_fin", nullable = false)
+    private String fecha_fin;
 
-    @Column(name="idDispositivo", nullable = false)
-    private String idDispositivo;
+    @Column(name="id_dispositivo", nullable = false)
+    private String id_dispositivo;
 
     public Sesion() {
     }
 
-    public Integer getIdUsuario() {
-        return idUsuario;
+    public Integer getId_usuario() {
+        return id_usuario;
     }
 
-    public void setIdUsuario(Integer idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setId_usuario(Integer id_usuario) {
+        this.id_usuario = id_usuario;
     }
 
     public String getToken() {
@@ -41,38 +41,38 @@ public class Sesion {
         this.token = token;
     }
 
-    public String getFechaInicio() {
-        return fechaInicio;
+    public String getFecha_inicio() {
+        return fecha_inicio;
     }
 
-    public void setFechaInicio(String fechaInicio) {
-        this.fechaInicio = fechaInicio;
+    public void setFecha_inicio(String fecha_inicio) {
+        this.fecha_inicio = fecha_inicio;
     }
 
-    public String getFechaFin() {
-        return fechaFin;
+    public String getFecha_fin() {
+        return fecha_fin;
     }
 
-    public void setFechaFin(String fechaFin) {
-        this.fechaFin = fechaFin;
+    public void setFecha_fin(String fecha_fin) {
+        this.fecha_fin = fecha_fin;
     }
 
-    public String getIdDispositivo() {
-        return idDispositivo;
+    public String getId_dispositivo() {
+        return id_dispositivo;
     }
 
-    public void setIdDispositivo(String idDispositivo) {
-        this.idDispositivo = idDispositivo;
+    public void setId_dispositivo(String id_dispositivo) {
+        this.id_dispositivo = id_dispositivo;
     }
 
     @Override
     public String toString() {
         return "Sesion{" +
-                "idUsuario=" + idUsuario +
+                "id_usuario=" + id_usuario +
                 ", token='" + token + '\'' +
-                ", fechaInicio='" + fechaInicio + '\'' +
-                ", fechaFin='" + fechaFin + '\'' +
-                ", idDispositivo='" + idDispositivo + '\'' +
+                ", fecha_inicio='" + fecha_inicio + '\'' +
+                ", fecha_fin='" + fecha_fin + '\'' +
+                ", id_dispositivo='" + id_dispositivo + '\'' +
                 '}';
     }
 }
