@@ -3,7 +3,6 @@ package com.example.mispubsrest.Controlador;
 
 import com.example.mispubsrest.Dao.PubDao;
 import com.example.mispubsrest.Modelos.Pub;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -50,5 +49,4 @@ public class RESTController {
         List<Pub> lista = daoPub.findAll();
         return ResponseEntity.ok(lista);
     }
-
 }
