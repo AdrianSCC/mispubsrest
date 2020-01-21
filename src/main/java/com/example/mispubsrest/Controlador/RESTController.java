@@ -2,7 +2,9 @@ package com.example.mispubsrest.Controlador;
 
 
 import com.example.mispubsrest.Dao.PubDao;
+import com.example.mispubsrest.Dao.UsuarioDao;
 import com.example.mispubsrest.Modelos.Pub;
+import com.example.mispubsrest.Modelos.Usuario;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,8 +17,13 @@ import java.util.Optional;
 @RequestMapping("/")
 public class RESTController {
 
+    //Inyección de dependencias para los pub
     @Autowired
     private PubDao daoPub;
+
+    //Inyección de dependencias para los usuarios
+    @Autowired
+    private UsuarioDao daoUsuario;
 
     /**
      *              CRUD PARA LOS PUBS
@@ -107,4 +114,20 @@ public class RESTController {
             return ResponseEntity.noContent().build();
         }
     }
+
+    /**
+     *              CRUD PARA LOS USUARIOS
+     * ========================================
+     */
+
+    /**
+     * Método para insertar un pub
+     */
+
+    @RequestMapping(value="usuarios",method = RequestMethod.POST)
+    public ResponseEntity<Usuario> insertarUsuario(@RequestBody Usuario usuario){
+        Usuario u = daoUsuario.save(usuario);
+        return ResponseEntity.ok(u);
+    }
+
 }
