@@ -155,6 +155,7 @@ public class RESTController {
     @RequestMapping(value = "usuarios", method = RequestMethod.GET)
     public ResponseEntity<List<Usuario>> findAllUsuarios() {
         List<Usuario> listaUsuario = daoUsuario.findAll();
+        System.out.println("correcto");
         return ResponseEntity.ok(listaUsuario);
     }
 
