@@ -94,7 +94,6 @@ public class RESTController {
 
     /**
      * Metodo para borrar un pub
-     *
      * @param id
      * @return
      */
@@ -121,13 +120,42 @@ public class RESTController {
      */
 
     /**
-     * Método para insertar un pub
+     * Método para insertar un pub Primero el servicio se asegura de
+     * que no exita un usuario con el mismo correo almacenado en la base
+     * de datos
      */
 
     @RequestMapping(value="usuarios",method = RequestMethod.POST)
     public ResponseEntity<Usuario> insertarUsuario(@RequestBody Usuario usuario){
-        Usuario u = daoUsuario.save(usuario);
-        return ResponseEntity.ok(u);
+        Optional<Usuario> optionalUsuario = daoUsuario.findByCorreo(usuario.getCorreo());
+        if(optionalUsuario.isPresent()){
+            return ResponseEntity.noContent().build();
+        }else{
+            Usuario u = daoUsuario.save(usuario);
+            return ResponseEntity.ok(u);
+        }
     }
+
+    /**
+     * Método para buscar un usuario por correo y contraseña. Lo utilizaremos para el login
+     * https://stackoverflow.com/questions/32796419/crudrepository-findby-method-signature-with-multiple-in-operators
+     * //List<Course> findByCourseIdAndModuleId(Long courseId, List<Long> moduleIds);
+     */
+    @RequestMapping(value="usuarios/{correo}/{password}", method = RequestMethod.GET)
+    public ResponseEntity<Usuario> buscarPorCorreoPass(@PathVariable("correo") String correo,@PathVariable("password") String password){
+        Optional<Usuario> optionalUsuario = daoUsuario.findByCorreoAndPassword(correo,password);
+        if (optionalUsuario.isPresent()){
+            return ResponseEntity.ok(optionalUsuario.get());
+        }else{
+            return ResponseEntity.noContent().build();
+        }
+    }
+
+
+
+
+
+
+
 
 }
