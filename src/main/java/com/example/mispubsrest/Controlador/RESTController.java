@@ -35,7 +35,6 @@ public class RESTController {
     @RequestMapping(value = "pubs", method = RequestMethod.POST)
     public ResponseEntity<Pub> insertarPub(@RequestBody Pub pub) {
         Pub p = daoPub.save(pub);
-        System.out.println("p");
         return ResponseEntity.ok(p);
     }
 
