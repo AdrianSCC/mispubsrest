@@ -46,7 +46,7 @@ public class RESTController {
      * @return
      */
     @RequestMapping(value = "pubs", method = RequestMethod.GET)
-    public ResponseEntity<List<Pub>> findAll() {
+    public ResponseEntity<List<Pub>> findAllPubs() {
         List<Pub> lista = daoPub.findAll();
         return ResponseEntity.ok(lista);
     }
@@ -151,6 +151,24 @@ public class RESTController {
             return ResponseEntity.noContent().build();
         }
     }
+
+    @RequestMapping(value = "usuarios", method = RequestMethod.GET)
+    public ResponseEntity<List<Usuario>> findAllUsuarios() {
+        List<Usuario> listaUsuario = daoUsuario.findAll();
+        return ResponseEntity.ok(listaUsuario);
+    }
+
+    @RequestMapping(value = "usuarios/{id}", method = RequestMethod.GET)
+    public ResponseEntity<Usuario> findByIdUsuarios(@PathVariable("id") Integer id) {
+        Optional<Usuario> optionalUsuario = daoUsuario.findById(id);
+        if (optionalUsuario.isPresent()) {
+            return ResponseEntity.ok(optionalUsuario.get());
+        } else {
+            return ResponseEntity.noContent().build();
+        }
+    }
+
+
 
 
 
