@@ -145,6 +145,7 @@ public class RESTController {
     public ResponseEntity<Usuario> buscarPorCorreoPass(@PathVariable("correo") String correo,@PathVariable("password") String password){
         Optional<Usuario> optionalUsuario = daoUsuario.findByCorreoAndPassword(correo,password);
         if (optionalUsuario.isPresent()){
+            System.out.println("correcto");
             return ResponseEntity.ok(optionalUsuario.get());
         }else{
             return ResponseEntity.noContent().build();
