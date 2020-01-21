@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/")
 public class RESTController {
@@ -19,7 +21,7 @@ public class RESTController {
     private PubDao daoPub;
 
     @RequestMapping(value = "hola", method = RequestMethod.GET)
-    public String hola(){
+    public String hola() {
         return "Hola, todo ok";
     }
 
@@ -32,10 +34,20 @@ public class RESTController {
     /**
      * Método para insertar un pub
      */
-    @RequestMapping(value="pubs",method=RequestMethod.POST)
-    public ResponseEntity<Pub> insertarPub(@RequestBody Pub pub){
+    @RequestMapping(value = "pubs", method = RequestMethod.POST)
+    public ResponseEntity<Pub> insertarPub(@RequestBody Pub pub) {
         Pub p = daoPub.save(pub);
         return ResponseEntity.ok(p);
+    }
+
+    /**
+     * Método para devolver todos los pubs
+     * @return
+     */
+    @RequestMapping(value = "pubs", method = RequestMethod.GET)
+    public ResponseEntity<List<Pub>> findAll() {
+        List<Pub> lista = daoPub.findAll();
+        return ResponseEntity.ok(lista);
     }
 
 }
