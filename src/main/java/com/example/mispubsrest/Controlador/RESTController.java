@@ -18,11 +18,6 @@ public class RESTController {
     @Autowired
     private PubDao daoPub;
 
-    @RequestMapping(value = "hola", method = RequestMethod.GET)
-    public String hola() {
-        return "Hola, todo ok";
-    }
-
     /**
      *              CRUD PARA LOS PUBS
      * ========================================
@@ -49,6 +44,20 @@ public class RESTController {
         return ResponseEntity.ok(lista);
     }
 
+    /**
+     * Método para seleccionar un pub buscando por su id
+     * @param id
+     * @return
+     */
+    @RequestMapping(value ="pubs/{id}",method = RequestMethod.GET)
+    public ResponseEntity<Pub> findById(@PathVariable("id") Integer id){
+        Optional<Pub> optionalPub = daoPub.findById(id);
+        if (optionalPub.isPresent()){
+            return ResponseEntity.ok(optionalPub.get());
+        }else{
+            return ResponseEntity.noContent().build();
+        }
+    }
 
     /**
      * Metodo para modificar un pub
