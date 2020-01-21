@@ -55,7 +55,7 @@ public class RESTController {
      * @param pub
      * @return
      */
-    @RequestMapping(value = "pubs", method = RequestMethod.PUT)
+    @RequestMapping(value = "pubs/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Pub> update(@PathVariable("id") Integer id, @RequestBody Pub pub){
         Optional<Pub> optionalPub = daoPub.findById(id);
         if (optionalPub.isPresent()){
@@ -66,6 +66,7 @@ public class RESTController {
             p.setEstilo(pub.getEstilo());
             p.setVisitas(pub.getVisitas());
             p.setWeb(pub.getWeb());
+            p.setImagen(pub.getImagen());
             daoPub.save(p);
             return ResponseEntity.ok(p);
         }
@@ -73,4 +74,24 @@ public class RESTController {
             return ResponseEntity.noContent().build();
         }
     }
+
+    @RequestMapping(value = "pubs/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<Pub> borrar(@PathVariable("id") Integer id) {
+        //Buscamos por id
+        Optional<Pub> op = daoPub.findById(id);
+        //Si lo encontramos, lo borramos y lo devolvemos
+        if (op.isPresent()) {
+            //Guardamos en un objeto auxiliar
+            Pub p = op.get();
+            //Borramos de la BBDD
+            daoPub.deleteById(id);
+            return ResponseEntity.ok(p);
+        } else {
+            //El pub no está en la BBDD
+            return ResponseEntity.noContent().build();
+        }
+    }
+
+
+
 }
