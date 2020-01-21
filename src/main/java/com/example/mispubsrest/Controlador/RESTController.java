@@ -78,6 +78,7 @@ public class RESTController {
 
     /**
      * Metodo para borrar un pub
+     *
      * @param id
      * @return
      */
