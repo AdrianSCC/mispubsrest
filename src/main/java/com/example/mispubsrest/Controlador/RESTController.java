@@ -61,7 +61,7 @@ public class RESTController {
         }
     }
 
-    /**
+     /**
      * Metodo para modificar un pub
      * @param id
      * @param pub
