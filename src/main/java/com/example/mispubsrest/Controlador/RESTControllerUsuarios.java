@@ -1,7 +1,6 @@
 package com.example.mispubsrest.Controlador;
 
 import com.example.mispubsrest.Dao.UsuarioDao;
-import com.example.mispubsrest.Modelos.Pub;
 import com.example.mispubsrest.Modelos.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -68,28 +67,6 @@ public class RESTControllerUsuarios {
         Optional<Usuario> optionalUsuario = daoUsuario.findById(id);
         if (optionalUsuario.isPresent()) {
             return ResponseEntity.ok(optionalUsuario.get());
-        } else {
-            return ResponseEntity.noContent().build();
-        }
-    }
-
-
-    /**
-     * Metodo para borrar un usuario recibiendo su id
-     * @param id
-     * @return
-     */
-    @RequestMapping(value = "usuarios/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<Usuario> borrarUsuario(@PathVariable("id") Integer id) {
-        //Buscamos por id
-        Optional<Usuario> optionalUsuario = daoUsuario.findById(id);
-        //Si lo encontramos, lo borramos y lo devolvemos
-        if (optionalUsuario.isPresent()) {
-            //Guardamos en un objeto auxiliar
-            Usuario u = optionalUsuario.get();
-            //Borramos de la BBDD
-            daoUsuario.deleteById(id);
-            return ResponseEntity.ok(u);
         } else {
             return ResponseEntity.noContent().build();
         }
