@@ -56,6 +56,10 @@ public class RESTControllerUsuarios {
         }
     }
 
+    /**
+     * Método para listar todos los usuarios
+     * @return
+     */
     @RequestMapping(value = "usuarios", method = RequestMethod.GET)
     public ResponseEntity<List<Usuario>> findAllUsuarios() {
         List<Usuario> listaUsuario = daoUsuario.findAll();
@@ -63,6 +67,11 @@ public class RESTControllerUsuarios {
         return ResponseEntity.ok(listaUsuario);
     }
 
+    /**
+     * Método para buscar un usuario por ID
+     * @param id
+     * @return
+     */
     @RequestMapping(value = "usuarios/{id}", method = RequestMethod.GET)
     public ResponseEntity<Usuario> findByIdUsuarios(@PathVariable("id") Integer id) {
         Optional<Usuario> optionalUsuario = daoUsuario.findById(id);
@@ -90,6 +99,26 @@ public class RESTControllerUsuarios {
             daoUsuario.deleteById(id);
             return ResponseEntity.ok(u);
         } else {
+            return ResponseEntity.noContent().build();
+        }
+    }
+
+    /**
+     * Método para modificar un usuario
+     */
+    @RequestMapping(value="usuarios/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<Usuario> updateUsuario(@PathVariable("id") Integer id, @RequestBody Usuario usuario){
+        Optional<Usuario> optionalUsuario = daoUsuario.findById(id);
+        if (optionalUsuario.isPresent()){
+            Usuario u = optionalUsuario.get();
+            u.setId(id);
+            u.setNombre(usuario.getNombre());
+            u.setCorreo(usuario.getCorreo());
+            u.setPassword(usuario.getPassword());
+            u.setImagen(usuario.getImagen());
+            daoUsuario.save(u);
+            return ResponseEntity.ok(u);
+        }else{
             return ResponseEntity.noContent().build();
         }
     }
