@@ -10,4 +10,6 @@ public interface UsuarioDao extends JpaRepository<Usuario, Integer> {
     Optional<Usuario> findByCorreo(String correo);
 
     Optional<Usuario> findByCorreoAndPassword(String correo, String password);
+
+    Optional<Usuario> findByNombre(String nombre);
 }

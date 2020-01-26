@@ -57,6 +57,23 @@ public class RESTControllerUsuarios {
     }
 
     /**
+     * Método para buscar un usuario por su nombre de usuario. Lo utilizaremos
+     * para que en el momento de registro no se deje insertar a un usuario cuyo
+     * nombre de usuario ya exista en nuestra BBDD
+     */
+
+    @RequestMapping (value="usuarios/registro/{nombre}", method = RequestMethod.GET)
+    public ResponseEntity<Usuario> buscarPorNombreUsuario(@PathVariable("nombre") String nombre){
+        Optional<Usuario> optionalUsuario = daoUsuario.findByNombre(nombre);
+        if (optionalUsuario.isPresent()){
+            optionalUsuario.get().setPassword(null);
+            return ResponseEntity.ok(optionalUsuario.get());
+        }else{
+            return ResponseEntity.noContent().build();
+        }
+    }
+
+    /**
      * Método para listar todos los usuarios
      * @return
      */
