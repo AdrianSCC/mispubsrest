@@ -61,6 +61,16 @@ public class RESTController {
         }
     }
 
+    @RequestMapping(value = "pubs/buscar/{nombre}",method = RequestMethod.GET)
+    public ResponseEntity<Pub> findByNombre(@PathVariable("nombre") String nombre){
+        Optional<Pub> optionalPub = daoPub.findByNombre(nombre);
+        if (optionalPub.isPresent()){
+            return ResponseEntity.noContent().build();
+        }else{
+            return ResponseEntity.ok(optionalPub.get());
+        }
+    }
+
      /**
      * Metodo para modificar un pub
      * @param id
