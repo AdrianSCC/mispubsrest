@@ -29,6 +29,7 @@ public class Pub {
     @Column(name="web")
     private String web;
 
+    @Lob
     @Column(name="imagen")
     private String imagen;
 

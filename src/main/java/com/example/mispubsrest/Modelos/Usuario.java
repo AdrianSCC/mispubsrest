@@ -1,5 +1,6 @@
 package com.example.mispubsrest.Modelos;
 import javax.persistence.*;
+import java.sql.Blob;
 
 @Entity
 @Table(name="usuarios")
@@ -19,6 +20,7 @@ public class Usuario {
     @Column(name="password", nullable = false)
     private String password;
 
+    @Lob
     @Column(name="imagen")
     private String imagen;
 
