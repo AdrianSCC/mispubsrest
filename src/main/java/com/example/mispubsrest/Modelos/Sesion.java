@@ -7,6 +7,10 @@ import javax.persistence.*;
 public class Sesion {
 
     @Id
+    @Column(name="id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
+
     @Column(name="id_usuario")
     private Integer id_usuario;
 
@@ -18,9 +22,6 @@ public class Sesion {
 
     @Column(name="fecha_fin", nullable = false)
     private String fecha_fin;
-
-    @Column(name="id_dispositivo", nullable = false)
-    private String id_dispositivo;
 
     public Sesion() {
     }
@@ -57,14 +58,6 @@ public class Sesion {
         this.fecha_fin = fecha_fin;
     }
 
-    public String getId_dispositivo() {
-        return id_dispositivo;
-    }
-
-    public void setId_dispositivo(String id_dispositivo) {
-        this.id_dispositivo = id_dispositivo;
-    }
-
     @Override
     public String toString() {
         return "Sesion{" +
@@ -72,7 +65,6 @@ public class Sesion {
                 ", token='" + token + '\'' +
                 ", fecha_inicio='" + fecha_inicio + '\'' +
                 ", fecha_fin='" + fecha_fin + '\'' +
-                ", id_dispositivo='" + id_dispositivo + '\'' +
                 '}';
     }
 }
