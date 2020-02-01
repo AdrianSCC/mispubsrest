@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/")
-public class RESTControllerSesiones {
+public class RESTControllerSesion {
 
     //Inyección de dependencias para las sesiones
     @Autowired
@@ -24,9 +24,9 @@ public class RESTControllerSesiones {
     /**
      * Método para buscar una sesión por la id de usuario
      */
-    @RequestMapping(value="sesiones/{id_usuario}", method = RequestMethod.GET)
-    public ResponseEntity<Sesion> findByIdUsuario(@PathVariable("id_usuario") Integer id){
-        Optional<Sesion> optionalSesion = daoSesion.findById_usuario(id);
+    @RequestMapping(value="sesiones/{idusuario}", method = RequestMethod.GET)
+    public ResponseEntity<Sesion> findByIdUsuario(@PathVariable("idusuario") Integer id){
+        Optional<Sesion> optionalSesion = daoSesion.findByIdusuario(id);
         if (optionalSesion.isPresent()){
             return ResponseEntity.ok(optionalSesion.get());
         }else{

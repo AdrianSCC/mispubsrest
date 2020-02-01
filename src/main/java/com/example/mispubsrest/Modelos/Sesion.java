@@ -7,31 +7,39 @@ import javax.persistence.*;
 public class Sesion {
 
     @Id
-    @Column(name="id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @Column(name="id_usuario")
-    private Integer id_usuario;
+    @Column(name = "idusuario")
+    private Integer idusuario;
 
-    @Column(name="token", nullable = false)
+    @Column(name = "token", nullable = false)
     private String token;
 
-    @Column(name="fecha_inicio", nullable = false)
-    private String fecha_inicio;
+    @Column(name = "fechainicio", nullable = false)
+    private String fechainicio;
 
-    @Column(name="fecha_fin", nullable = false)
-    private String fecha_fin;
+    @Column(name = "fechafin", nullable = false)
+    private String fechafin;
 
     public Sesion() {
     }
 
-    public Integer getId_usuario() {
-        return id_usuario;
+    public Integer getId() {
+        return id;
     }
 
-    public void setId_usuario(Integer id_usuario) {
-        this.id_usuario = id_usuario;
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getIdusuario() {
+        return idusuario;
+    }
+
+    public void setIdusuario(Integer idusuario) {
+        this.idusuario = idusuario;
     }
 
     public String getToken() {
@@ -42,29 +50,19 @@ public class Sesion {
         this.token = token;
     }
 
-    public String getFecha_inicio() {
-        return fecha_inicio;
+    public String getFechainicio() {
+        return fechainicio;
     }
 
-    public void setFecha_inicio(String fecha_inicio) {
-        this.fecha_inicio = fecha_inicio;
+    public void setFechainicio(String fechainicio) {
+        this.fechainicio = fechainicio;
     }
 
-    public String getFecha_fin() {
-        return fecha_fin;
+    public String getFechafin() {
+        return fechafin;
     }
 
-    public void setFecha_fin(String fecha_fin) {
-        this.fecha_fin = fecha_fin;
-    }
-
-    @Override
-    public String toString() {
-        return "Sesion{" +
-                "id_usuario=" + id_usuario +
-                ", token='" + token + '\'' +
-                ", fecha_inicio='" + fecha_inicio + '\'' +
-                ", fecha_fin='" + fecha_fin + '\'' +
-                '}';
+    public void setFechafin(String fechafin) {
+        this.fechafin = fechafin;
     }
 }
