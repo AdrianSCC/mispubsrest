@@ -3,7 +3,6 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="usuarios")
-
 public class Usuario {
 
     @Id

@@ -65,9 +65,9 @@ public class RESTController {
     public ResponseEntity<Pub> findByNombre(@PathVariable("nombre") String nombre){
         Optional<Pub> optionalPub = daoPub.findByNombre(nombre);
         if (optionalPub.isPresent()){
-            return ResponseEntity.noContent().build();
-        }else{
             return ResponseEntity.ok(optionalPub.get());
+        }else{
+            return ResponseEntity.noContent().build();
         }
     }
 

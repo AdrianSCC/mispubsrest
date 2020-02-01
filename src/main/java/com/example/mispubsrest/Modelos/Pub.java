@@ -15,10 +15,10 @@ public class Pub {
     private String nombre;
 
     @Column(name="latitud", nullable = false)
-    private Long latitud;
+    private double latitud;
 
     @Column(name="longitud", nullable = false)
-    private Long longitud;
+    private double longitud;
 
     @Column(name="estilo", nullable = false)
     private String estilo;
@@ -51,19 +51,19 @@ public class Pub {
         this.nombre = nombre;
     }
 
-    public Long getLatitud() {
+    public double getLatitud() {
         return latitud;
     }
 
-    public void setLatitud(Long latitud) {
+    public void setLatitud(double latitud) {
         this.latitud = latitud;
     }
 
-    public Long getLongitud() {
+    public double getLongitud() {
         return longitud;
     }
 
-    public void setLongitud(Long longitud) {
+    public void setLongitud(double longitud) {
         this.longitud = longitud;
     }
 
