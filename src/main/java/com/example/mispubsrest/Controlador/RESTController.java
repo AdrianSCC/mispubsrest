@@ -61,6 +61,11 @@ public class RESTController {
         }
     }
 
+    /**
+     * Metodo para buscar un pub en la base de datos segun su nombre
+     * @param nombre
+     * @return
+     */
     @RequestMapping(value = "pubs/buscar/{nombre}",method = RequestMethod.GET)
     public ResponseEntity<Pub> findByNombre(@PathVariable("nombre") String nombre){
         Optional<Pub> optionalPub = daoPub.findByNombre(nombre);
@@ -118,4 +123,14 @@ public class RESTController {
             return ResponseEntity.noContent().build();
         }
     }
+
+
+    @RequestMapping(value ="pubs/estilos/{estilo}",method = RequestMethod.GET)
+    public ResponseEntity<List<Pub>> findByEstilo(@PathVariable("estilo") String estilo){
+        List<Pub> lista = daoPub.findByEstilo(estilo);
+        return ResponseEntity.ok(lista);
+    }
+
+
+
 }
