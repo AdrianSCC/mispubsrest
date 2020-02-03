@@ -124,17 +124,22 @@ public class RESTControllerUsuarios {
      * Método para modificar un usuario
      */
     @RequestMapping(value="usuarios/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Usuario> updateUsuario(@PathVariable("id") Integer id, @RequestBody Usuario usuario){
+    public ResponseEntity<Usuario> updateUsuario(@PathVariable("id") Integer id, @RequestBody Usuario usuario, @PathVariable("nombre") String nombre){
         Optional<Usuario> optionalUsuario = daoUsuario.findById(id);
+        Optional<Usuario> optionalUsuarioNombre = daoUsuario.findByNombre(nombre);
         if (optionalUsuario.isPresent()){
-            Usuario u = optionalUsuario.get();
-            u.setId(id);
-            u.setNombre(usuario.getNombre());
-            u.setCorreo(usuario.getCorreo());
-            u.setPassword(usuario.getPassword());
-            u.setImagen(usuario.getImagen());
-            daoUsuario.save(u);
-            return ResponseEntity.ok(u);
+            if (!optionalUsuarioNombre.isPresent()){
+                Usuario u = optionalUsuario.get();
+                u.setId(id);
+                u.setNombre(usuario.getNombre());
+                u.setCorreo(usuario.getCorreo());
+                u.setPassword(usuario.getPassword());
+                u.setImagen(usuario.getImagen());
+                daoUsuario.save(u);
+                return ResponseEntity.ok(u);
+            }else{
+                return ResponseEntity.noContent().build();
+            }
         }else{
             return ResponseEntity.noContent().build();
         }
