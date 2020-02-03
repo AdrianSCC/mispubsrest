@@ -123,7 +123,7 @@ public class RESTControllerUsuarios {
     /**
      * Método para modificar un usuario
      */
-    @RequestMapping(value="usuarios/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value="usuarios/{id}/{nombre}", method = RequestMethod.PUT)
     public ResponseEntity<Usuario> updateUsuario(@PathVariable("id") Integer id, @RequestBody Usuario usuario, @PathVariable("nombre") String nombre){
         Optional<Usuario> optionalUsuario = daoUsuario.findById(id);
         Optional<Usuario> optionalUsuarioNombre = daoUsuario.findByNombre(nombre);
